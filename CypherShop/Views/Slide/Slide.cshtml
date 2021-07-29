@@ -1,0 +1,12 @@
+﻿@model CypherShop.Models.ProductDetail
+
+
+<div class="slick-ab" style="width: 650px; height: 410px; float: left; margin-top: 20px; margin-left: 20px;">
+    @foreach (var item in Model.ListSlide)
+    {
+        <div><img style="width: 650px; height: 410px;" src="~/Images/@item.Anh" alt="Alternate Text" /></div>
+
+    }
+</div>
+
+

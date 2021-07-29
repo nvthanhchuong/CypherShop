@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "Blogs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .menu-blogs {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+        .menu-blogs li {
+            display: inline;
+        }
+
+        .menu-blogs a {
+            display: inline-block;
+            text-decoration: none;
+            font-size: 24px;
+            padding: 10px;
+            color: #555555;
+        }
+
+            .menu-blogs a:active {
+                background-color: yellow;
+            }
+
+    .blogs-ac li {
+        /* Text color */
+        color: black;
+        list-style-type: none;
+    }
+
+    .blogs-ac li:before {
+        /* Unicode bullet symbol */
+        content: '\2022 ';
+        /* Bullet color */
+        color: red;
+        padding-right: 0.5em;
+    }
+</style>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v11.0&appId=509570786786406&autoLogAppEvents=1" nonce="uRSjjUhX"></script>
+<ul class="menu-blogs">
+    <li><a href="#">Tin Mới</a></li>
+    <li><a href="#">Đánh Giá</a></li>
+    <li><a href="#">Mẹo Hay</a></li>
+    <li><a href="#">Đánh Giá</a></li>
+    <li><a href="#">Sự Kiện</a></li>
+    <li><a href="#">Stories</a></li>
+</ul>
+<div class="clearfix" style="width: 80%; background-color: white; margin: auto;">
+    <div style="float: left; width: 700px; max-height: 4000px;">
+        <iframe width="700" height="400" src="https://www.youtube.com/embed/B8Mwjoif36g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div style="width: 90%; margin: auto;">
+            <h5 style="margin-top: 15px; text-align: center;"><strong>Đánh giá chi tiết MSI Bravo 15 B5DD 028VN R7 5800H</strong></h5>
+            <br />
+            <p>Rình con mồi, ngắm chuẩn thời cơ và ra đòn chính xác, đó là những gì mà tinh thần Lôi Điểu của MSI Bravo 15 B5DD 028VN dành cho game thủ, nơi bạn sẽ được sở hữu cấu hình cực mạnh, màn hình 144Hz cùng công nghệ tản nhiệt đột phá để chinh phục mọi tựa game.</p>
+            <img style="width: 80%; height: 300px; margin-left:50px;" src="~/Images/blogs1.jpg" alt="Alternate Text" /> <br />
+            <strong>Hiệu năng cực khủng, tinh hoa của AMD</strong>
+            <p style="margin-top: 15px;">
+                Sức mạnh của MSI Bravo 15 là sự kết hợp hoàn toàn từ nhà AMD, bao gồm bộ vi xử lý AMD Ryzen 7 5800H cao cấp và card đồ họa rời AMD Radeon RX 5500M. Đây đều là những linh kiện sản xuất trên tiến trình 7nm mới nhất. Ryzen 7 5800H thể hiện sức mạnh đa luồng vượt trội với 8 lõi 16 luồng, tốc độ 3.3 – 4.4GHz, trong khi đó Radeon RX 5500M sử dụng chip Navi 14 mới, hỗ trợ GDDR6 VRAM, cho hiệu năng mạnh mẽ tương đương GTX 1660 Ti.
+                Bạn có thể chơi tốt mọi tựa game eSports ở thiết lập đồ họa Ultra và cả nhiều game bom tấn AAA với đồ họa từ mức High trở lên.
+            </p>
+            <img style="width: 80%; height: 300px; margin-left:50px;" src="~/Images/blogs2.jpg" alt="Alternate Text" /> <br />
+            <strong>Hiển thị ấn tượng, tần số quét 144Hz mượt mà</strong>
+            <p style="margin-top: 15px;">
+                MSI Bravo 15 với màn hình 15,6 inch, viền siêu mỏng, độ phân giải Full HD sắc nét và tấm nền IPS sẽ đưa bạn đến không gian game mãn nhãn, đắm chìm trong cuộc phiêu lưu ly kỳ, hấp dẫn. Nhưng ấn tượng hơn phải kể đến tần số quét 144Hz, mang tới tốc độ khung hình cao cho các tựa game, để bạn được tận hưởng trải nghiệm game mượt mà hơn bao giờ hết. Từng chuyển động nhỏ đều không qua khỏi tầm mắt, cho bạn lợi thế để dành chiến thắng.
+            </p>
+            <img style="width: 80%; height: 300px; margin-left:50px;" src="~/Images/blogs3.jpg" alt="Alternate Text" /> <br />
+            <strong>Kiểu dáng mạnh mẽ, nổi bật cá tính</strong>
+            <p style="margin-top: 15px;">
+                Đặc trưng của dòng MSI Bravo là logo Lôi Điểu đầy quyền năng. Phiên bản mới MSI Bravo 15 B5DD vẫn có màu đen mạnh mẽ nhưng mặt lưng đã thêm nhiều đường viền cách điệu, qua đó nổi bật logo Lôi Điểu hơn. Nhìn mặt lưng này bạn có thể nhận ra một con chim Sấm mạnh mẽ đang bay lượn trên nền trời đen, đưa đôi mắt sắc bén hướng về phía con mồi. Thiết kế tuyệt đẹp và câu chuyện mang tính biểu tượng tạo sự riêng biệt cho laptop MSI Bravo 15 B5DD, điều mà game thủ rất yêu thích.
+            </p>
+            <img style="width: 80%; height: 300px; margin-left:50px;" src="~/Images/blogs4.jpg" alt="Alternate Text" /> <br />
+        </div>
+    </div>
+    <div style="float: left;  width: 505px; max-height: 4000px; margin-left: 10px;">
+        <div class="clearfix">
+            <img style="float: left; width: 150px; height:100px;" src="~/Images/blogs5.jpg" alt="Alternate Text" />
+            <h5> <strong style="float: left; width: 330px; margin-left: 15px;"><a style="text-decoration: none; color: black;" href="https://www.thegioididong.com/tin-tuc/top-laptop-gaming-cau-hinh-manh-me-1370083">TOP laptop gaming cấu hình mạnh mẽ trong tầm giá 20 triệu tại TGDĐ, cho các bạn sinh viên chiến game 'tẹt ga', không lo rớt hạng</a></strong></h5>
+        </div>
+        <div class="clearfix">
+            <img style="float: left; width: 150px; height:100px;" src="~/Images/blogs6.jpg" alt="Alternate Text" />
+            <h5> <strong style="float: left; width: 330px; margin-left: 15px;"><a style="text-decoration: none; color: black;" href="https://www.thegioididong.com/tin-tuc/top-laptop-gaming-cau-hinh-manh-me-1370083">Đánh giá chi tiết MSI GP76 Leopard: Hiệu năng siêu đỉnh với card đồ họa RTX 3070, Intel Core i7 cùng hệ thống tản nhiệt mát rượi</a></strong></h5>
+        </div>
+        <div class="clearfix">
+            <img style="float: left; width: 150px; height:100px;" src="~/Images/blogs7.jpg" alt="Alternate Text" />
+            <h5> <strong style="float: left; width: 330px; margin-left: 15px;"><a style="text-decoration: none; color: black;" href="https://www.thegioididong.com/tin-tuc/top-laptop-gaming-cau-hinh-manh-me-1370083">Qualcomm đang phát triển một bộ vi xử lý Snapdragon mạnh hơn dành cho máy tính, nghe tin này Intel lại buồn</a></strong></h5>
+        </div>
+        <br />
+        <ul class="blogs-ac">
+            <li><strong>Những công nghệ hứa hẹn thay đổi tương lai của game mobile</strong></li>
+            <li><strong>Kinh nghiệm săn lùng điện thoại cũ</strong></li>
+        </ul>
+        
+    </div>
+    <div style="margin-left: 100px;" class="fb-comments" data-href="https://localhost:44383/Blogs/Index" data-width="1000" data-numposts="10"></div>
+
+</div>

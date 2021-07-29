@@ -1,0 +1,70 @@
+﻿@using CypherShop.Models;
+@model IEnumerable<SANPHAM>
+@using System.Globalization;
+@{
+    ViewBag.Title = "Timkiem";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div style="margin-left: 160px; "><a style="text-decoration: none;" href="@Url.Action("Index","Home")">Trang Chủ</a> / Khuyến Mãi</div>
+<div style="width: 80%; margin: auto; margin-top: 10px;">
+    <div class="discount-slick" style="margin-left: 10px;">
+        <div><img src="~/Images/dkslide1.jpg" alt="Alternate Text" /></div>
+        <div><img src="~/Images/dkslide2.jpg" alt="Alternate Text" /></div>
+        <div><img src="~/Images/dkslide3.jpg" alt="Alternate Text" /></div>
+        <div><img src="~/Images/dkslide4.jpg" alt="Alternate Text" /></div>
+        <div><img src="~/Images/dkslide5.jpg" alt="Alternate Text" /></div>
+        <div><img src="~/Images/dkslide6.jpg" alt="Alternate Text" /></div>
+        <div><img src="~/Images/dkslide7.jpg" alt="Alternate Text" /></div>
+        <div><img src="~/Images/dkslide8.jpg" alt="Alternate Text" /></div>
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.discount-slick').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            dots: true,
+            autoplay: true,
+            autoplaySpeed: 3500,
+  });
+});
+
+</script>
+<style>
+    .discount-slick .slick-prev {
+        margin-left: 40px;
+        z-index: 2;
+    }
+
+        .discount-slick .slick-prev::before {
+            font-size: 40px;
+        }
+
+    .discount-slick .slick-next {
+        margin-right: 55px;
+        z-index: 2;
+    }
+
+        .discount-slick .slick-next::before {
+            font-size: 40px;
+        }
+</style>
+<div style="margin-left: 160px; margin-top: 5px;"><a style=" text-decoration: none;" href="@Url.Action("Index","Home")">Trang Chủ</a> / Tìm kiếm sản phẩm </div>
+<div class="product clearfix" style="margin-top: 20px;">
+    @foreach (var item in Model)
+    {
+        <a href="@Url.Action("Index","Detail", new { Id = item.MaSP, nsx = item.MaNSX })" style="text-decoration: none;font-family: Arial;">
+            <div class="sanpham product_hover">
+                <img style="width:100%; height: 58%" src="~/Images/@item.Anhbia" alt="">
+                <p class="product_name">@item.TenSP</p>
+                <p class="product_detail" style="color: rgb(20, 53, 195) ;"><strong>@string.Format(new CultureInfo("vi-VN"), "{0:#,###}", @item.Giaban)đ</strong>&emsp; &emsp; <img src="~/Images/freeship.svg" alt="Alternate Text" /></p>
+                <p class="product_detail" style="margin-top: -15px;"><i class="product_detail_trike_size" style="color: rgb(148, 218, 239); "><strike style="color: dimgrey;">@string.Format(new CultureInfo("vi-VN"), "{0:#,###}", @item.Giaban)đ</strike>&emsp; &emsp;- @item.Giamgia%</i></p>
+            </div>
+        </a>
+    }
+</div>
+<br />
+
+

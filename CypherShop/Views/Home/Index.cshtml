@@ -1,0 +1,190 @@
+﻿@using CypherShop.Models
+@using PagedList.Mvc
+@using System.Globalization;
+@model PagedList.PagedList<SANPHAM>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<script>/*my slick*/
+    $(document).ready(function () {
+        $('.slick-ab').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            infinite: true,
+            autoplay: true,
+            autoplaySpeed: 3500,
+            dots: true,
+        });
+    });</script>
+<style>
+    .slick-ab .slick-prev {
+        margin-left: 40px;
+        z-index: 2;
+    }
+    .slick-ab .slick-prev::before {
+        font-size: 40px;
+    }
+    .slick-ab .slick-next {
+        margin-right: 55px;
+        z-index: 2;
+    }
+
+        .slick-ab .slick-next::before {
+            font-size: 40px;
+        }
+</style>
+<!-- content -->
+<div class="content clearfix">
+
+    @Html.Action("Categorys", "Categorys")
+    @Html.Action("Slide", "Slide")
+
+
+    <div class="content_a">
+        <a href="@Url.Action("Index","Blogs")"><img style="width: 100%; height:48%; border-radius: 5px;" src="~/Images/tincongnghe.jpg" alt=""></a>
+        <img style="width: 100%; height:48%; border-radius: 5px; margin-top: 5%;" src="~/Images/5g.jpg" alt="">
+    </div>
+
+
+</div>
+
+    <div class="client-slider">
+        <div class="client-slide-track">
+            <div class="client-slide">
+                <img src="~/Images/client1.jpg" height="100" width="250" alt="" />
+            </div>
+            <div class="client-slide">
+                <img src="~/Images/client2.png" height="100" width="250" alt="" />
+            </div>
+            <div class="client-slide">
+                <img src="~/Images/client4.png" height="100" width="250" alt="" />
+            </div>
+            <div class="client-slide">
+                <img src="~/Images/client3.png" height="100" width="250" alt="" />
+            </div><div class="client-slide">
+                <img src="~/Images/client5.png" height="100" width="250" alt="" />
+            </div>
+
+            <div class="client-slide">
+                <img src="~/Images/client6.png" height="100" width="250" alt="" />
+            </div>
+            <div class="client-slide">
+                <img src="~/Images/client7.jpg" height="100" width="250" alt="" />
+            </div>
+            <div class="client-slide">
+                <img src="~/Images/client1.jpg" height="100" width="250" alt="" />
+            </div>
+            <div class="client-slide">
+                <img src="~/Images/client2.png" height="100" width="250" alt="" />
+            </div>
+            <div class="client-slide">
+                <img src="~/Images/client4.png" height="100" width="250" alt="" />
+            </div>
+            <div class="client-slide">
+                <img src="~/Images/client3.png" height="100" width="250" alt="" />
+            </div>
+            <div class="client-slide">
+                <img src="~/Images/client5.png" height="100" width="250" alt="" />
+            </div>
+            <div class="client-slide">
+                <img src="~/Images/client6.png" height="100" width="250" alt="" />
+            </div>
+            <div class="client-slide">
+                <img src="~/Images/client7.jpg" height="100" width="250" alt="" />
+            </div>
+
+        </div>
+    </div>
+    <div class="product_hot">
+        <div class="product_hot_title">
+            <h3 style="float: left; margin-top: 15px;"><strong>|&emsp;Sản Phẩm Bán Chạy</strong> <img style="width: 50px; height: 50px; margin-top: -10px; float: right;" src="~/Images/new.png" alt="Alternate Text" /></h3>
+        </div>
+        <div class="product_hot_slick">
+            @foreach (var item in Model)
+            {
+
+                <!-- margin - left: 20px; -->
+                <div class="product_hot_slick_hover">
+                    <a href="@Url.Action("Index","Detail", new { Id = item.MaSP, nsx = item.MaNSX })" style="text-decoration: none;font-family: Arial; color: black;">
+                        <img style="width: 100%; height: 58% ;" src="~/Images/@item.Anhbia" alt=""><img style="width: 40px; height: 40px;" src="~/Images/new.png" alt="Alternate Text" />
+                        <div style="width: 300px; height: 200px; ">
+                            <p style="width: 255px;overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;">@item.TenSP</p>
+                            <p>
+                                <b style="color: blue; float: left;"> @string.Format(new CultureInfo("vi-VN"), "{0:#,###}", @item.Giaban)đ</b> <img style=" margin-top: 20px; margin-left: 150px;" src="~/Images/freeship.svg" alt="Alternate Text" />
+                            </p>
+                            <p><strike style="color: dimgrey;">@string.Format(new CultureInfo("vi-VN"), "{0:#,###}", @item.Giaban)đ</strike>&emsp; &emsp;- @item.Giamgia%</p>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="sp_tl">
+        @Html.Action("ProductsCategory", "Home")
+        @Html.Action("Tabpanel", "Home")
+    </div>
+
+
+
+
+    <div class="product_title">
+        <h3><strong>|&emsp;Dành Cho Bạn</strong></h3>
+    </div>
+    <div class="product clearfix">
+        @foreach (var item in Model)
+        {
+            <a href="@Url.Action("Index","Detail", new { Id = item.MaSP, nsx = item.MaNSX })" style="text-decoration: none;font-family: Arial;">
+                <div class="sanpham product_hover">
+                    <img style="width:100%; height: 58%" src="~/Images/@item.Anhbia" alt="">
+                    <p class="product_name">@item.TenSP</p>
+                    <p class="product_detail" style="color: rgb(20, 53, 195) ;"><strong>@string.Format(new CultureInfo("vi-VN"), "{0:#,###}", @item.Giaban)đ</strong>&emsp; &emsp; <img src="~/Images/freeship.svg" alt="Alternate Text" /></p>
+                    <p class="product_detail" style="margin-top: -15px;"><i class="product_detail_trike_size" style="color: rgb(148, 218, 239); "><strike style="color: dimgrey;">@string.Format(new CultureInfo("vi-VN"), "{0:#,###}", @item.Giaban)đ</strike>&emsp; &emsp;- @item.Giamgia%</i></p>
+                </div>
+            </a>
+        }
+    </div>
+    <br />
+
+
+    <div style="color: dodgerblue; margin-left: 750px;">
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    </div>
+    <div class="menutrang">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    </div>
+    <style>
+        .menutrang {
+            padding-top: 20px;
+            margin-left: 700px;
+        }
+
+            .menutrang li {
+                display: inline-block;
+            }
+
+                .menutrang li a {
+                    color: dodgerblue;
+                    float: left;
+                    padding: 8px 16px;
+                    margin-left: 3px;
+                    text-decoration: none;
+                    border: 1px solid dodgerblue;
+                    background-color: white;
+                }
+
+                .menutrang li a {
+                    border-radius: 5px;
+                }
+
+                    .menutrang li a:hover {
+                        background-color: dodgerblue;
+                        color: white;
+                        border-radius: 5px;
+                    }
+    </style>
+
+
+
+

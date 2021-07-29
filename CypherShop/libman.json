@@ -1,0 +1,9 @@
+{
+  "PaypalSetting": {
+    "ClientId": "AeT1NzfN1hdQR4ZoszcZNCQfw4fcUAbCruCPBB0FZCvtAps7AKbF2qHUdy0gtBojMYkf9AkLPkGVYDug",
+    "SecretKey": "EJDlY1fakx15ySOggxT10tiVkYh4H24VnZZW-ZBMtWqWPoxieo1z91HtyFx1vpt_43MYAiU2k2iul3yN"
+  },
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": []
+}

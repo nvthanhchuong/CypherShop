@@ -1,0 +1,72 @@
+﻿@using CypherShop.Models;
+@model List<Cart>
+@{
+    ViewBag.Title = "Giohang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div style="width: 80%; max-height: 2000px; margin: 0 auto; background-color: white; border-radius: 10px; margin-top: 20px;">
+    <br />
+    <h2 style="text-align: center; margin-top: 20px;">THÔNG TIN GIỎ HÀNG</h2>
+    <table align="center" border="1" class="table" style="width: 98%; margin: auto; ">
+        <tr style="text-align: center; font-weight: bold;">
+            <td>Mã Sản Phẩm</td>
+            <td>Tên Sản Phẩm</td>
+            <td>Ảnh Bìa</td>
+            <td>Số Lượng</td>
+            <td>Đơn Giá</td>
+            <td>Thành Tiền</td>
+        </tr>
+        @foreach (var item in Model)
+
+        {
+            <tr style="text-align: center; font-weight: bold;">
+                <td>@item.iMaSP</td>
+                <td>@item.sTenSP</td>
+                <td><img style="width: 50px; height: 50px;" src="~/Images/@item.sAnhbia" alt="Alternate Text" height="400" width="289" /></td>
+                @using (Html.BeginForm("Capnhatgiohang", "Cart", new { @iMasp = item.iMaSP }))
+                {
+                    <td>
+                        <input style="width: 50px; text-align: center; border-radius: 5px;" type="number" name="txtsoluong" value="@item.iSoluong" min="1" />
+                    </td>
+                    <td>
+                        <p style="background-color: #CCFF66; color: black;">@String.Format("{0:0,0}", item.dDongia)đ</p>
+                    </td>
+                    <td>
+                        <p style="background-color: #FFFF00; color: black;">@String.Format("{0:0,0}", item.dThanhtien)đ</p>
+                    </td>
+                    <td style="width: 90px;">
+                        <a style=" text-decoration: none; width: 70px; background-color: #FFCC00; color: white; padding: 5px; border-radius: 5px;" href="@Url.Action("Index","Detail", new{ Id  = item.iMaSP})">Chi Tiết</a>
+
+                    </td>
+                    <td>
+                        @Html.ActionLink("Xoá", "XoaGioHang", new { @iMasp = item.iMaSP })
+                    </td>
+                    <td>
+                        <input style="border: none; background-color: #00CCFF; color: white; padding: 5px; border-radius: 5px;" type="submit" name="name" value="Cập Nhật" />
+                    </td>
+                }
+            </tr>
+        }
+        <tr style="text-align: right; font-weight: bold; color: red;">
+            <td colspan="4">
+                Số Lượng Sản Phẩm: @ViewBag.TongSoLuong
+            </td>
+            <td colspan="5">
+                Tổng Tiền: @String.Format("{0:0,0}", ViewBag.TongTien) VNĐ <br />
+                <a href="@Url.Action("Order","Cart")" class="btn btn-primary" style="margin-top: 10px;">Đặt Hàng</a>
+            
+            </td>
+        </tr>
+        <tr style="font-weight: bold;text-align: right; color: blue;">
+            <td colspan="9">
+                @Html.ActionLink("Xoá Giỏ Hàng", "XoaTatCaGioHang")
+            </td>
+        </tr>
+
+    </table>
+    <br />
+</div>
+
+
+
+

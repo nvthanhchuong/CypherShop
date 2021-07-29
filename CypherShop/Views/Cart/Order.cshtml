@@ -1,0 +1,145 @@
+﻿@using CypherShop.Models
+@model List<Cart>
+@{
+    ViewBag.Title = "Đơn Đặt Hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .tvgh a {
+        text-decoration: none;
+        margin-right: 10px;
+    }
+</style>
+<div style="width: 80%; background-color: white; margin: auto; padding: 20px;">
+    <h2 style="text-align: center;">Thông Tin Đơn Đặt Hàng</h2>
+    <table align="center" ; border="1" style="width: 99%;">
+        <tr style="text-align: center; font-weight: bold;">
+            <td style="width: 70px;">Mã Sản Phẩm</td>
+            <td>Tên Sản Phẩm</td>
+            <td>Ảnh Bìa</td>
+            <td style="width: 50px;">Số Lượng</td>
+            <td>Đơn Giá</td>
+            <td>Thành Tiền</td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr style="text-align: center; font-weight: bold;">
+                <td>@item.iMaSP</td>
+                <td>@item.sTenSP</td>
+                <td><img style="width: 50px; height: 50px;" src="~/Images/@item.sAnhbia" alt="Alternate Text" height="400" width="289" /></td>
+                @using (Html.BeginForm("Capnhatgiohang", "Cart", new { @iMasp = item.iMaSP }))
+                {
+                    <td>
+                        <p>@item.iSoluong</p>
+                    </td>
+                    <td>
+                        <p style="background-color: #CCFF66; color: black;">@String.Format("{0:0,0}", item.dDongia)đ</p>
+                    </td>
+                    <td>
+                        <p style="background-color: #FFFF00; color: black;">@String.Format("{0:0,0}", item.dThanhtien)đ</p>
+                    </td>
+
+                }
+            </tr>
+        }
+        <tr style="font-weight: bold; text-align: right; color: red;">
+            <td colspan="3" style="text-align: center;">Số lượng sản phẩm: @ViewBag.Tongsoluong</td>
+            <td colspan="3" style="padding-right: 10px;">Tổng Tiền: @String.Format("{0:0,0}", ViewBag.Tongtien)đ</td>
+        </tr>
+        <tr style="font-weight: bold; text-align: right; color: blue;">
+            <td colspan="6" class="tvgh">@Html.ActionLink("Trở Về Giỏ Hàng", "GioHang", "Cart")</td>
+        </tr>
+
+    </table>
+
+    <h2 style="text-align: center; margin-top: 20px;">Thông Tin Khách Hàng</h2>
+    @{
+        KHACHHANG khachhang = (KHACHHANG)Session["users"];
+    }
+    <table align="center" style="margin-left: 200px;">
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+            <tr style="height: 40px;">
+                <td>Họ tên khách hàng:</td>
+                <td style="font-weight: bold;">&ensp;@khachhang.Ho @khachhang.Tenlot @khachhang.Ten</td>
+            </tr>
+            <tr style="height: 40px;">
+                <td>Địa chỉ:</td>
+                <td style="font-weight: bold;">@khachhang.DiachiKH</td>
+            </tr>
+            <tr style="height: 40px;">
+                <td>Điện thoại:</td>
+                <td style="font-weight: bold;">@khachhang.DienthoaiKH</td>
+            </tr>
+            <tr style="height: 40px;">
+                <td>Ngày đặt:</td>
+                <td style="font-weight: bold;">@DateTime.Now.ToShortDateString()</td>
+            </tr>
+            <tr style="height: 40px;">
+                <td>
+                    <br />
+                    <label>Hình thức thanh toán</label>
+                    <br />
+                    @Html.DropDownList("MaPhuongThuc")
+                    <br />
+                    <div id="paypal-button"></div>
+                    <br />
+                </td>
+            </tr>
+            <tr style="height: 40px;">
+                <td>Ngày giao hàng:</td>
+                <td style="font-weight: bold;">
+                    <input type="date" name="Ngaygiao" />
+                </td>
+            </tr>
+            <tr style="height: 40px; ">
+                <td></td>
+                <td>
+                    <input style=" margin-left: 150px; margin-top: 10px; width: 200px; height: 40px; color: white; border-radius: 5px; border: none; background-color:#00DD00;" type="submit" value="Đồng Ý Đặt Hàng" />
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+<script>
+    paypal.Button.render({
+        // Configure environment
+        env: 'sandbox',
+        client: {
+            sandbox: 'AeT1NzfN1hdQR4ZoszcZNCQfw4fcUAbCruCPBB0FZCvtAps7AKbF2qHUdy0gtBojMYkf9AkLPkGVYDug',
+            production: 'demo_production_client_id'
+        },
+        // Customize button (optional)
+        locale: 'en_US',
+        style: {
+            size: 'small',
+            color: 'gold',
+            shape: 'pill',
+        },
+
+        // Enable Pay Now checkout flow (optional)
+        commit: true,
+
+        // Set up a payment
+        payment: function (data, actions) {
+            return actions.payment.create({
+                transactions: [{
+                    amount: {
+                        total: '0.01',
+                        currency: 'USD'
+                    }
+                }]
+            });
+        },
+        // Execute the payment
+        onAuthorize: function (data, actions) {
+            return actions.payment.execute().then(function () {
+                // Show a confirmation message to the buyer
+                window.alert('Thank you for your purchase!');
+            });
+        }
+    }, '#paypal-button');
+
+</script>

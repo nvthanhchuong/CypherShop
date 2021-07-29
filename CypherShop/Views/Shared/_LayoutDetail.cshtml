@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CypherShop</title>
+    <link rel="shortcut icon" href="~/Images/logo.svg">
+
+    <link href="~/Content/home.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/FontAwesome/css/all.min.css">
+
+
+    <!-- JQuery -->
+    <link rel="stylesheet" type="text/css" href="~/JQuery/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="~/JQuery/slick/slick-theme.css" />
+    <link rel="stylesheet" href="~/JQuery/jquery.js">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div>
+        <!-- Menu Bar -->
+        <div class="Menubar">
+            <ul>
+                <li>
+                    <a href="@Url.Action("Index","Home")">
+                        <img src="~/Images/CypherPunk.png" alt="">
+                    </a>
+
+                </li>
+                <li class="menu">
+                    <p></p>
+                </li>
+                <li class="menu">
+                    @using (Html.BeginForm("Timkiem", "Home"))
+                    {
+                        <input class="menu_iptText" name="SearchString" placeholder="Nhập từ khoá cần tìm kiếm">
+                        <input class="menu-search" type="submit" value="Tìm kiếm">
+                    }
+                </li>
+                @if (Session["user"] != null)
+                {
+                    <text>
+                        <br />
+                        <br />
+                        Xin chào: @Session["user"].ToString()
+                    </text>
+                }
+                else
+                {
+                    <li class="menu">
+                        <p class="menu_User">
+                            <i class="fas fa-user fa-lg"></i> <a style="text-decoration: none; color: white;" href="@Url.Action("Login", "Home")">Đăng Nhập / Đăng Ký Tài Khoản</a>
+                        </p>
+
+                    </li>
+                }
+            <li class="menu">
+                @Html.Action("GiohangPartial", "Cart")
+            </li>
+            </ul>
+
+        </div>
+
+        <!-- Nav bar -->
+        <div class="thanh_navbar">
+            <ul>
+                <li><a href="@Url.Action("Index","Products")"><i class="fas fa-laptop"></i>LAPTOP</a></li>
+                <li><a href="#"><i class="fas fa-desktop"></i> PC</a></li>
+                <li><a href="#"><i class="far fa-keyboard"></i> PHỤ KIỆN</a></li>
+                <li><a href="@Url.Action("Discount","Products")"><i class="fas fa-tag"></i> KHUYẾN MÃI</a></li>
+                <li><a href="#"><i class="fas fa-tools"></i> BẢO HÀNH</a></li>
+                <li><a href="#"><i class="fas fa-arrows-alt-h"></i> ĐỔI TRẢ</a></li>
+                <li><a href="#"><i class="fas fa-headset"></i> HỔ TRỢ</a></li>
+            </ul>
+        </div>
+        @RenderBody()
+        <!-- Footer -->
+        <footer class="footer" id="footer">
+            <div class="section-footer">
+                <div class="container-footer">
+                    <div class="logo-footer">
+                        <div class="col-main col-main--logo-2">
+                            <img style="margin-left: 50px;" class="col-main__img-1 col-main__img-1--logo-2" src="~/Images/logo.svg" />
+                            <div style="margin-left: 50px; margin-top: 30px; width: 300px;">
+                                <h4>Email liên hệ</h4>
+                                <br />
+                                <p>Hỗ trợ Khách hàng: <br /><a style="text-decoration: none;" href="#">cskh@cyphershop.vn</a></p>
+                                <p>Liên hệ báo giá: <br /><a style="text-decoration: none;" href="#">baogia@cyphershop.vn</a></p>
+                                <p>Hợp tác phát triển: <br /><a style="text-decoration: none;" href="#">hoptac@cyphershop.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-footer">
+                        <h4 class="footer__h3" style="margin-left: -40px;">Hổ Trợ khách Hàng</h4>
+                        <ul class="ul-footer">
+                            <li class="ul-footer__li"><a class="ul-footer__a" href="#">Thẻ ưu đãi</a></li>
+                            <li class="ul-footer__li"><a class="ul-footer__a" href="#">Trung tâm bảo hành</a></li>
+                            <li class="ul-footer__li"><a class="ul-footer__a" href="#">Doanh nghiệp thân thiết</a></li>
+                            <li class="ul-footer__li"><a class="ul-footer__a" href="#">Thanh toán và giao hàng</a></li>
+                            <li class="ul-footer__li"><a class="ul-footer__a" href="#">Dịch vụ bảo trì và sữa chữa</a></li>
+                            <li class="ul-footer__li"><a class="ul-footer__a" href="#" style="color: orange;">Chăm sóc khách hàng: 1900-6789</a></li>
+
+                        </ul>
+                    </div>
+                    <div class="info-footer">
+                        <h4 class="footer__h3" style="margin-left: -40px;">Hợp Tác</h4>
+                        <ul class="ul-footer">
+                            <li class="ul-footer__li"><a class="ul-footer__a" href="#">Quy chế hoạt động sàn GDTMDT</a></li>
+                            <li class="ul-footer__li"><a class="ul-footer__a" href="#">Bán hàng cùng CypherShop</a></li>
+                            <!-- <li class="ul-footer__li"><a class="ul-footer__a"  href="#">Lorem ipsum dolor</a></li>
+                            <li class="ul-footer__li"><a class="ul-footer__a" href="#">Lorem ipsum dolor</a></li> -->
+                            <br>
+                            <h4 style="margin-left: -40px;">Bảng Tin</h4>
+                            <br>
+                            <p style="margin-left: -40px;">Đăng ký để nhận bảng tin mới nhất từ Cypher Punk</p>
+                            <br>
+                            <input style="border: none; border-radius: 5px; margin-left: -40px;width: 200px; height: 35px; padding-left: 10px;" type="text" placeholder="Nhập địa chỉ gmail">
+                            <button style="border: none; border-radius: 5px; width: 80px; height: 35px; color: white; background-color: #FF3366;">Đăng ký</button>
+                        </ul>
+                    </div>
+
+                    <div class="info-footer">
+                        <h4 class="footer__h3">Phương Thức Thanh Toán</h4>
+                        <ul class="ul-footer">
+                            <li class="ul-footer__li" style="margin-left: 10px;"><a class="ul-footer__a" href="#"><img src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/visa.svg" alt="">&emsp; <img src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/mastercard.svg" alt="">&emsp;<img src=https://frontend.tikicdn.com/_desktop-next/static/img/footer/jcb.svg alt=""></a></li>
+                            <li class="ul-footer__li" style="margin-left: 10px; margin-top: 10px;"><a class="ul-footer__a" href="#"><img src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/cash.svg" alt="">&emsp; <img src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/internet-banking.svg" alt="">&emsp;<img src=https://frontend.tikicdn.com/_desktop-next/static/img/footer/installment.svg alt=""></a></li>
+                            <!-- <li class="ul-footer__li"><a class="ul-footer__a"  href="#">Lorem ipsum dolor</a></li>
+                            <li class="ul-footer__li"><a class="ul-footer__a" href="#">Lorem ipsum dolor</a></li> -->
+                            <br>
+                            <br>
+                            <h4>Tải Ứng Dụng Trên Điện Thoại</h4>
+                            <br>
+                            <img style="width: 150px; height: 46px;" src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/appstore.png" alt="">
+                            <img style="width: 150px; height: 46px;" src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/playstore.png" alt="">
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="icons-social" style="margin-top: 30px;">
+                    <ul class="list-social">
+                        <li class="icons-social__item"><a class="icons-social__link" href="#"><i class="far fa-envelope"></i></i></a></li>
+                        <li class="icons-social__item"><a class="icons-social__link" href="#"><i class="icons-social__i fab fa-instagram"></i></a></li>
+                        <li class="icons-social__item"><a class="icons-social__link" href="https://www.facebook.com/nvthanhchuong"><i class="icons-social__i fab fa-facebook"></i></a></li>
+                        <li class="icons-social__item"><a class="icons-social__link" href="#"><i class="icons-social__i fab fa-twitter"></i></a></li>
+                        <li class="icons-social__item"><a class="icons-social__link" href="#"><i class="icons-social__i fab fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+                <div style="margin-left: 600px; margin-top: 30px;" class="container-footer-2">
+                    <p>Develop by <a class="container-footer__link" style="color: orange;" href="https://www.facebook.com/nvthanhchuong" target="_blank">Thành Chương</a> | Copyright &copy; 2021</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="~/JQuery/slick/slick.min.js"></script>
+    <!-- /onclick js -->
+    <script src="~/Scripts/jsfile.js"></script>
+</body>
+</html>

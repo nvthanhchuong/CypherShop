@@ -1,0 +1,74 @@
+﻿@model CypherShop.Models.ProductDetail
+@using System.Globalization;
+@{
+    ViewBag.Title = "Discount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div style="margin-left: 160px; "><a style="text-decoration: none;" href="@Url.Action("Index","Home")">Trang Chủ</a> / Khuyến Mãi</div>
+<div style="width: 80%; margin: auto; margin-top: 10px;">
+    <div class="discount-slick" style="margin-left: 10px;">
+        <div><img src="~/Images/dkslide1.jpg" alt="Alternate Text" /></div>
+        <div><img src="~/Images/dkslide2.jpg" alt="Alternate Text" /></div>
+        <div><img src="~/Images/dkslide3.jpg" alt="Alternate Text" /></div>
+        <div><img src="~/Images/dkslide4.jpg" alt="Alternate Text" /></div>
+        <div><img src="~/Images/dkslide5.jpg" alt="Alternate Text" /></div>
+        <div><img src="~/Images/dkslide6.jpg" alt="Alternate Text" /></div>
+        <div><img src="~/Images/dkslide7.jpg" alt="Alternate Text" /></div>
+        <div><img src="~/Images/dkslide8.jpg" alt="Alternate Text" /></div>
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.discount-slick').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            dots: true,
+            autoplay: true,
+            autoplaySpeed: 3500,
+  });
+});
+
+</script>
+<style>
+    .discount-slick .slick-prev {
+        margin-left: 40px;
+        z-index: 2;
+    }
+
+        .discount-slick .slick-prev::before {
+            font-size: 40px;
+        }
+
+    .discount-slick .slick-next {
+        margin-right: 55px;
+        z-index: 2;
+    }
+
+        .discount-slick .slick-next::before {
+            font-size: 40px;
+        }
+</style>
+
+<div class="discount-products">
+    @foreach (var item in Model.ListSanPham)
+    {
+        <div class="discount-container">
+            <a href="@Url.Action("Index","Detail", new { Id = item.MaSP, nsx = item.MaNSX })" style="text-decoration: none;">
+                <div class="card discount-product-card">
+                    <img class="card-img-top" src="~/Images/@item.Anhbia" alt="Card image" style="width:100%">
+                    <div class="card-body">
+                        <strong class="card-title discount-card-title">@item.TenSP</strong>
+                        <strong class="card-text discount-card-text">@string.Format(new CultureInfo("vi-VN"), "{0:#,###}", @item.Giaban)đ</strong>
+                        <div class="clearfix"><strike class="discount-card-gianhap">@string.Format(new CultureInfo("vi-VN"), "{0:#,###}", @item.Giaban)đ</strike><p class="discount-card-km">-@item.Giamgia%</p></div>
+                        <strong class="kmk">Khuyến mãi khủng</strong><p href="#" class="btn btn-primary mn">Mua ngay</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+
+    }
+
+</div>

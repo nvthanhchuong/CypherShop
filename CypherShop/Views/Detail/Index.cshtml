@@ -1,0 +1,151 @@
+﻿@model CypherShop.Models.ProductDetail
+@using System.Globalization;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutDetail.cshtml";
+}
+
+<style>
+    .slick-prev{
+        margin-left: 30px;
+        z-index: 2;
+    }
+    .slick-prev:before {
+        font-size: 40px;
+        color: palevioletred;
+    }
+    .slick-next {
+        margin-right: 50px;
+        z-index: 2;
+    }
+        .slick-next:before {
+            font-size: 40px;
+            color: palevioletred;
+        }
+</style>
+<script>
+    $(document).ready(function () {
+        $('.slick_sanpham').slick({
+            slidesToShow: 4,
+            slidesToScroll: 3,
+            infinite: true,
+            autoplay: true,
+            autoplaySpeed: 4000,
+        });
+    });
+</script>
+
+<div class="detail">
+    <div style="background-color: deepskyblue; width: 80%; ">
+        &emsp; <a style="text-decoration: none; color: white;" href="@Url.Action("Index","Home")">Trang chủ</a>&ensp;<i style="color: white;" class="fas fa-chevron-right"></i>
+        &ensp;<a style="text-decoration: none; color: white;" href="#">Chi tiết sản phẩm</a>
+    </div>
+    <div class="ten_sanpham ">
+        <div><p><marquee>&emsp; Bạn đang xem sản phẩm: @Model.objSanPham.TenSP tại Website: www.http://CypherShop.Com chúc bạn một ngày tốt lành !</marquee></p></div>
+    </div>
+
+    <div class="sanpham_chinh clearfix">
+        <div class="hinh_sanpham">
+            <img class="hinh_sanpham_ne" style="height: 400px; width: 100%; " src="~/Images/@Model.objSanPham.Anhbia" alt="Alternate Text" />
+        </div>
+        <div class="thongtin_sanpham clearfix">
+            <p><strong style="font-size: 18px;">@Model.objSanPham.TenSP</strong></p>
+            <p><strong>Tên Nhà Sản Xuất: @Model.objNhaSanXuat.TenNSX</strong></p>
+            <p style="color: orange;"> Chỉ còn @Model.objSanPham.Soluongton sản phẩm</p>
+            <p><strong style="color: #00CCFF;font-size: 18px;">Giá Bán: @string.Format(new CultureInfo("vi-VN"), "{0:#,###}", @Model.objSanPham.Giaban)đ</strong></p>
+            <div class="counter">
+                <span class="down" onClick='decreaseCount(event, this)'>-</span>
+                <input type="text" value="1" id="ipQuantity" placeholder="0">
+                <span class="up" onClick='increaseCount(event, this)'>+</span>
+            </div>
+            <div id="Datmua" class="btn btn-success" style="margin-top: 10px; width: 400px;">
+                <a href="@Url.Action("ThemGioHang","Cart", new { @iMaSP = Model.objSanPham.MaSP,@strURL = Request.Url.ToString()})"
+                   style="color: white; font-weight: bold; text-decoration: none;">Thêm Vào Giỏ Hàng</a>
+            </div><br />
+            <button class="btntragop">Mua Trả Góp 0%</button> <button class="btnlienhe">Liên Hệ</button>
+            <h4 style="margin-top: 10px;">Quà Tặng</h4>
+            <div>
+                - Balô thương hiệu <br />
+                - Bộ làm vệ sinh máy tính
+            </div>
+        </div>
+        <div class="baohanh">
+            <div class="clearfix" style="width: 100%; height: 45px;">
+                <img style="float: left; margin-top: 15px; margin-left: 20px;" src="~/Images/freeship.svg" alt="Alternate Text" /><p style="color: #00CD00; float: right;margin-top: 10px; margin-right: 25px;">Sản phẩm được miễn phí giao hàng</p>
+
+            </div>
+            <div>
+                <ul style="list-style-type: none; margin-left: 15px; width: 250px;">
+                    <li><h3>Chính sách bán hàng</h3></li>
+                    <li><i class="fas fa-shipping-fast fa-lg" style=" color:#0000DD;"></i>&emsp; Miễn phí giao hàng cho đơn hàng từ 800k</li>
+                    <li><i class="fas fa-trademark fa-lg" style=" color:#0000DD;"></i>&emsp;Cam kết hàng chính hãng 100%</li>
+                    <li><i class="fas fa-exchange-alt fa-lg" style=" color:#0000DD;"></i>&emsp;Đổi trả trong vòng 10 ngày</li>
+                    <li><h3>Dịch vụ khác</h3></li>
+                    <li><i class="fas fa-cog fa-lg" style=" color:#0000DD;"></i>&emsp;Sửa chữa đồng giá 150k</li>
+                    <li><i class="fas fa-home fa-lg" style=" color:#0000DD;"></i>&emsp;Bảo hành tại nhà</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="clearfix">
+            <div class="cauhinh clearfix" style="background-color: #FFFFFF;">
+                <h3 style="margin-top: 10px;">| Thông số kỹ thuật</h3>
+                <div style=" margin-left: 20px;" class="clearfix">
+                    <ul style="float: left; width: 150px; list-style-type: none;">
+                        <li><p>Thương Hiệu</p></li>
+                        <li><p>CPU</p></li>
+                        <li><p>RAM</p></li>
+                        <li><p>Đồ Hoạ</p><br /></li>
+                        <li><p>Màn Hình</p></li>
+                        <li><p>SSD</p></li>
+                        <li><p>Pin</p></li>
+                        <li><p>Màu Sắc</p></li>
+                        <li><p>Hệ Điều Hành</p></li>
+                        <li><p>Cảm Ứng</p></li>
+                    </ul>
+                    <ul style="float: left;width: 280px; list-style-type: none;">
+                        <li><p>@Model.objNhaSanXuat.TenNSX</p></li>
+                        <li><p>@Model.objSanPham.CPU</p></li>
+                        <li><p>@Model.objSanPham.RAM</p></li>
+                        <li><p>@Model.objSanPham.DoHoa</p></li>
+                        <li><p>@Model.objSanPham.ManHinh @Model.objSanPham.PhanGiai</p></li>
+                        <li><p>@Model.objSanPham.SSD</p></li>
+                        <li><p>@Model.objSanPham.Pin</p></li>
+                        <li><p>@Model.objSanPham.MauSac</p></li>
+                        <li><p>@Model.objSanPham.HDH</p></li>
+                        <li><p>@Model.objSanPham.CamUng</p></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mota" style="margin-left: 30px;">
+                <h3 style="margin-left: 10px;">| Mô tả sản phẩm </h3>
+                <div>@Model.objSanPham.Mota</div>
+                <div><img style="width: 500px; height: 350px; margin-left: 100px; " src="~/Images/@Model.objSanPham.Anhbia" alt="Alternate Text" /></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sanpham_lienquan">
+
+        <h3 style="margin-left: 10px; margin-top: 10px;">Các sản phẩm liên quan</h3>
+
+        <div class="slick_sanpham">
+            @foreach (var item in Model.ListSanPham)
+            {
+                <div style="width: 300px;">
+                    <a href="@Url.Action("Index","Detail", new { Id = item.MaSP, nsx = item.MaNSX })" style="text-decoration: none;font-family: Arial; color: black;">
+                        <div>
+                            <img style="width: 250px; height: 220px;" src="~/Images/@item.Anhbia" alt="Alternate Text" />
+                        </div>
+                        <strong class="slick_tensanpham">@item.TenSP</strong>
+                        <strong style="margin-left: 10px; color: #ff3366">@string.Format(new CultureInfo("vi-VN"), "{0:#,###}", @item.Giaban)đ</strong>
+                        <strike style="margin-left: 10px; color: dodgerblue">@string.Format(new CultureInfo("vi-VN"), "{0:#,###}", @item.Giaban)đ</strike>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v11.0&appId=509570786786406&autoLogAppEvents=1" nonce="uRSjjUhX"></script>
+    <div style="margin-left: 100px; background-color: white; margin-top: 20px; margin-right: 85px; border-radius: 10px;" class="fb-comments" data-href="https://localhost:44383/Blogs/Index" data-width="1230" data-numposts="10"></div>
+</div>
